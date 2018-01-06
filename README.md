@@ -30,20 +30,27 @@ test_dir/dublicates/2.txt
 ```
 
 ## 5.Какие функции могут быть переиспользованы в вашем коде
-Функция `load_data` считывает содержимое файла в одну строку  
-Функция `get_most_frequent_words` принимает на вход строку и выдаёт список кортежей
-формата [(слово: кол-во повторений в тексте),(слово: кол-во повторений в тексте)]
-Функция `print_pretty_output` выводит список, полученный на выходе функции `get_most_frequent_words`,
-на поток ввода-вывода в человекочитаемом виде
+Функция `get_directory_content` принимает на вход путь до директории и
+выводит список словарей, в которых указаны характеристики (имя, размер и относительный путь)
+для каждого файла внутри директории,  указанной как аргумент функции  
+Функция `get_file_benchmark` принимает на вход полный набор характеристик для файла и
+выводит объект, на основании которого в последствии будет проводиться сравнение , в нашем случей этокортеж формата (имя файла, размер файла)  
+
+Функции `count_files_stats` и `get_list_of_dublicates` предназначены для работы  "в связке" друг с другом и разделены исключительно для упрощения восприятия кода
+Функция `count_files_stats`  принимет на вход список, полученный от функции `get_directory_content` и выводит объект-счётчик, который отражает, сколько файлов соответсвует идентичному набору сравнительных характеристик  
+Функция `get_list_of_dublicates` принимает на вход список, полученный от `get_directory_content` и выводит список характеристик файлов, сравнительная часть которых релевантна более чем к одному файлу. Выражаясь проще - функция возвращает список информации о дублирующихся файла  
+Функция `print_dublicated_files_stats` выводит информацию о дублирующихся файлах на поток ввода-вывода в человекочитаемом формате
 
 Импортировать и использовать функцию коди можно  следующим образом:  
 ```python
-from lang_frequency import load_data
-from lang_frequency import get_most_frequent_words
+from dublicates import get_directory_content
+from dublicates import get_file_benchmark
+from dublicates import count_files_stats
+from dublicates import get_list_of_dublicates
 
 
-text_from_file = load_data(textfile_path)
-most_frequent_words = get_most_frequent_words(text_from_file)
+files_stats_list = get_directory_content(directory_path)
+dublicating_files_stats_list = get_list_of_dublicates(files_stats_list)
 ```
 
 ## 6. Цели
