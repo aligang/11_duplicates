@@ -1,7 +1,50 @@
-# Anti-Duplicator
+## 1.Что это такое ?
 
-[TODO. There will be project description]
+Этот код позволяет найти дублирующиеся файлы внутри каталога и субкаталогов
 
-# Project Goals
+## 2.Системные требования
+Для работы с программой понадобится Python3.5 (который скорее всего у вас уже установлен, если Вы используете Linux)  
 
-The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
+
+## 3.Где можно скачать  
+Можно форкнуть здесь - [частота слов](https://github.com/aligang/11_dublicates)  
+и затем скачать 
+```
+git clone https://github.com/<юзернейм-аккаунта-на-гите>/11_dublicates
+```
+
+## 4.Как этим пользоваться...  
+*a.Данный код может быть исползован как самостоятельная программа,*  
+*при этом в качестве аргумента нужно будет указать путь до директории, которую нужно будет просканировать на предмет файлов-дубликатов*
+
+```bash
+$ python3 duplicates.py test_dir
+--------------------------------------------------
+Список дублирующихся файлов в каталоге test_dir :
+--------------------------------------------------
+test_dir/1.txt
+test_dir/dublicates/1.txt
+test_dir/2.txt
+test_dir/dublicates/2.txt
+
+```
+
+## 5.Какие функции могут быть переиспользованы в вашем коде
+Функция `load_data` считывает содержимое файла в одну строку  
+Функция `get_most_frequent_words` принимает на вход строку и выдаёт список кортежей
+формата [(слово: кол-во повторений в тексте),(слово: кол-во повторений в тексте)]
+Функция `print_pretty_output` выводит список, полученный на выходе функции `get_most_frequent_words`,
+на поток ввода-вывода в человекочитаемом виде
+
+Импортировать и использовать функцию коди можно  следующим образом:  
+```python
+from lang_frequency import load_data
+from lang_frequency import get_most_frequent_words
+
+
+text_from_file = load_data(textfile_path)
+most_frequent_words = get_most_frequent_words(text_from_file)
+```
+
+## 6. Цели
+Код создан в учебных целях. В рамках учебного курса по веб-разработке ― [DEVMAN.org](https://devman.org)

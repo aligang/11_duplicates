@@ -29,24 +29,24 @@ def get_file_benchmark(file_stat):
     return file_benchmark
 
 
-def count_identical_files_stats(files_stats_list):
+def count_files_stats(files_stats_list):
     files_benchmarks_stats_list = [
         get_file_benchmark(file_stat)
         for file_stat in files_stats_list
     ]
-    identical_files_stats_counter = collections.Counter(
+    files_stats_counter = collections.Counter(
         files_benchmarks_stats_list
     )
-    return identical_files_stats_counter
+    return files_stats_counter
 
 
 def get_list_of_dublicates(files_stats_list):
-    identical_files_stats_counter = count_identical_files_stats(
+    files_stats_counter = count_files_stats(
         files_stats_list
     )
     dublicating_files_stats_list = [
         file_stat for file_stat in files_stats_list
-        if identical_files_stats_counter[
+        if files_stats_counter[
             get_file_benchmark(file_stat)
         ] > 1
     ]
